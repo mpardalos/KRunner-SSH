@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=com.selfcoders.ssh-runner
+Exec=%{BASE_DIR}/main.py

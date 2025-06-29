@@ -12,11 +12,11 @@ Simply execute the `install.sh` script and you are ready to go.
 
 ### Manual installation
 
-* Copy [ssh-runner.desktop](ssh-runner.desktop) to ~/.local/share/kservices5
-* Copy [ssh-runner.service](ssh-runner.service) to ~/.local/share/dbus-1/services/com.selfcoders.ssh-runner.service
-* Replace "%{BASE_DIR}" with the path to the folder containing the runner.py in ~/.local/share/dbus-1/services/com.selfcoders.ssh-runner.service
+* Copy [ssh-runner.desktop](ssh-runner.desktop) to `~/.local/share/krunner/dbusplugins/`
+* Copy [ssh-runner.service](ssh-runner.service) to `~/.local/share/dbus-1/services/com.selfcoders.ssh-runner.service`
+* Replace `%{BASE_DIR}` with the path to the folder containing the `runner.py` in `~/.local/share/dbus-1/services/com.selfcoders.ssh-runner.service`
 * Install Python dbus bindings: `pip install dbus-python`
-* Restart KRunner using `kquitapp5 krunner`
+* Restart KRunner using `kquitapp6 krunner`
 
 ## Terminal Command
 
