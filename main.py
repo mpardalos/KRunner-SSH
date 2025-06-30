@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 import os
+from pathlib import Path
 import subprocess
 import sys
 
@@ -51,19 +52,19 @@ class Runner(dbus.service.Object):
 
     @dbus.service.method(iface, in_signature="ss")
     def Run(self, matchId, actionId):
-        command = []
+        subprocess.call(self.terminal_command.format(matchId), shell=True)
 
-        for argument in self.terminal_command:
-            if "{}" in argument:
-                argument = argument.format(matchId)
+def get_terminal_config():
+    xdg_config_home = Path(os.environ.get('XDG_CONFIG_HOME', Path.home() / '.config'))
+    config_file_path = xdg_config_home / "krunner-ssh"
 
-            command.append(argument)
-
-        subprocess.call(command)
-
+    try:
+        return config_file_path.read_text().strip()
+    except (FileNotFoundError, PermissionError, IOError):
+        return "konsole -e ssh '{}'"
 
 if __name__ == "__main__":
-    terminal_command = ["konsole", "-e", "ssh {}"]
+    terminal_command = get_terminal_config()
 
     if len(sys.argv) > 1:
         terminal_command = sys.argv[1:]

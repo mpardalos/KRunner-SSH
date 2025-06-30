@@ -20,7 +20,7 @@ Simply execute the `install.sh` script and you are ready to go.
 
 ## Terminal Command
 
-As every terminal emulator has different options on how to start a new SSH session, you can specify the command to open the SSH session as arguments passed to `runner.py`.
+As every terminal emulator has different options on how to start a new SSH session, you can specify the command to open the SSH session using the config file `~/.config/krunner-ssh`, or as arguments passed to `runner.py`.
 
 The `{}` placeholder will be replaced by the hostname.
 
@@ -30,7 +30,7 @@ Examples:
 * [Tilix](https://gnunn1.github.io/tilix-web/): `tilix -e 'ssh {}'`
 * GNOME Terminal: `gnome-terminal -- ssh {}`
 
-Example call: `/path/to/runner.py konsole -e 'ssh {}'`
+Example call: `/path/to/runner.py konsole -e 'ssh {}'`, or create `~/.config/krunner-ssh` with the contents `konsole -e 'ssh {}'`.
 
 ## Usage
 
