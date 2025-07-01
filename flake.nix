@@ -14,15 +14,23 @@
       defaultPackage = forAllSystems (pkgs:
         pkgs.stdenv.mkDerivation {
           name = "krunner-ssh";
-          propagatedBuildInputs = [
-            (pkgs.python3.withPackages
-              (pythonPackages: with pythonPackages; [ dbus-python ]))
+          buildInputs = with pkgs; [
+            bash
+            wrapGAppsNoGuiHook 
           ];
-          buildInputs = [ pkgs.bash ];
+          propagatedBuildInputs = with pkgs; [
+            glib 
+            gobject-introspection
+            (python3.withPackages
+              (pythonPackages: with pythonPackages; [ 
+                  dbus-python 
+                  pygobject3
+              ]))
+          ];
           src = ./.;
           installPhase = ''
-            install -Dm755 ${./main.py} $out/main.py
-            XDG_DATA_HOME="$out/share" BASE_DIR="$out" bash ${./install.sh}
+            install -Dm755 ${./main.py} $out/bin/main.py
+            XDG_DATA_HOME="$out/share" BASE_DIR="$out/bin" bash ${./install.sh}
           '';
         });
     };
