@@ -29,8 +29,8 @@
           ];
           src = ./.;
           installPhase = ''
-            install -Dm755 ${./main.py} $out/bin/main.py
-            XDG_DATA_HOME="$out/share" BASE_DIR="$out/bin" bash ${./install.sh}
+            install -Dm755 ${./main.py} $out/bin/krunner-ssh
+            XDG_DATA_HOME="$out/share" EXECUTABLE="$out/bin/krunner-ssh" bash ${./install.sh}
           '';
         });
     };
